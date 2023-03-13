@@ -1,5 +1,5 @@
 {
-  "name": "mern-client",
+  "name": "easymeals-client",
   "version": "0.1.0",
   "private": true,
   "proxy": "http://localhost:3001/",
@@ -17,8 +17,8 @@
     "react-scripts": "4.0.2"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "react-scripts --openssl-legacy-provider start",
+    "build": "react-scripts --openssl-legacy-provider build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
