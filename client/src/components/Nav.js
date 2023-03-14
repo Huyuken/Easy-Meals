@@ -20,6 +20,21 @@ function Nav() {
                 Log Out
             </a>
             </li>
+            <li className="mx-1">
+            <Link to="/ChefMode">
+                Chef Mode
+            </Link>
+          </li>
+          <li className="mx-1">
+            <Link to="/Recipes">
+                My Recipes
+            </Link>
+          </li>
+          <li className="mx-1">
+            <Link to="/DoGroceries">
+                Do Groceries
+            </Link>
+          </li>
         </ul>
     );
     } else {

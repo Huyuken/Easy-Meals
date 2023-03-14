@@ -16,6 +16,7 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Nav from './components/Nav';
 import { StoreProvider } from './utils/GlobalState';
+import { ChefMode } from './pages/ChefMode';
 // import Success from './pages/Success';
 // import OrderHistory from './pages/OrderHistory';
 
@@ -58,22 +59,11 @@ function App() {
                 path="/signup" 
                 element={<Signup />} 
               />
-              {/* <Route 
-                path="/success" 
-                element={<Success />} 
-              />
               <Route 
-                path="/orderHistory" 
-                element={<OrderHistory />} 
+                path="/chefmode" 
+                element={<ChefMode />} 
               />
-              <Route 
-                path="/products/:id" 
-                element={<Detail />} 
-              />
-              <Route 
-                path="*" 
-                element={<NoMatch />} 
-              /> */}
+              
             </Routes>
           </StoreProvider>
         </div>
