@@ -15,6 +15,7 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Nav from './components/Nav';
+import RecipePage from './pages/RecipePage';
 import { StoreProvider } from './utils/GlobalState';
 // import Success from './pages/Success';
 // import OrderHistory from './pages/OrderHistory';
@@ -47,7 +48,7 @@ function App() {
             <Nav />
             <Routes>
               <Route 
-                path="/" 
+                exact path="/" 
                 element={<Home />} 
               />
               <Route 
@@ -58,11 +59,11 @@ function App() {
                 path="/signup" 
                 element={<Signup />} 
               />
-              {/* <Route 
-                path="/success" 
-                element={<Success />} 
-              />
               <Route 
+                path="/recipes/:id" 
+                element={<RecipePage/>} 
+              />
+              {/*<Route 
                 path="/orderHistory" 
                 element={<OrderHistory />} 
               />
