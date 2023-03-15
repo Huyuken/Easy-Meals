@@ -4,6 +4,6 @@ import RecipeForm from "../components/RecipeForm";
 
 export const ChefMode = () => {
     return <div>
-        <RecipeForm></RecipeForm>
+        <RecipeForm list={['pasta','salad']}/>
     </div>
 } 

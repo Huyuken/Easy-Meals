@@ -10,13 +10,20 @@ const RecipeForm = (props) => {
             setIngredientsList(ingredientsList.filter((ingredent,position)=>position!==index))
         }
     }
+    const [userInput,setUserInput]=useState('')
+    const handleChange=(event)=>{
+        console.log('user input',event.target.value)
+        setUserInput(event.target.value)
+    }
         
     return <div>
     <h1>ingredients List</h1>
-    <input type="text" placeholder="Enter ingredient name" />
-    {ingredientsList.length === 0 && <p>There are no students in the list!</p>}
+    <p><b>you entered:</b>{userInput}</p>
+    <input onChange={handleChange} type="text" placeholder="Enter ingredient name" />
         <ul>
-        
+        {ingredientsList.map((ingredient,index)=><li style={{marginBottom:"10px"}} key={`ingredient-${index}`}>
+                {ingredient} <button onClick={()=>deleteIngredient(index)} style={{marginLeft:"20px"}}>X</button>
+            </li>)}
     </ul>
 </div>
 }
