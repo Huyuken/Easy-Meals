@@ -61,6 +61,10 @@ function App() {
                 element={<Signup />} 
               />
               <Route 
+                path="/recipes/:id" 
+                element={<RecipePage />} 
+              />
+              <Route 
                 path="/chefmode" 
                 element={<ChefMode />} 
               />
