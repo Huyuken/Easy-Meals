@@ -15,11 +15,18 @@ const RecipeForm = (props) => {
         console.log('user input',event.target.value)
         setUserInput(event.target.value)
     }
+
+    const handleEnter=(event)=>{
+        if(event.keyCode===13){
+            setIngredientsList([...ingredientsList,userInput])
+            setUserInput("")
+        }
+    }
         
     return <div>
     <h1>ingredients List</h1>
     <p><b>you entered:</b>{userInput}</p>
-    <input onChange={handleChange} type="text" placeholder="Enter ingredient name" />
+    <input onKeyDown={handleEnter} onChange={handleChange} type="text" placeholder="Enter ingredient name" />
         <ul>
         {ingredientsList.map((ingredient,index)=><li style={{marginBottom:"10px"}} key={`ingredient-${index}`}>
                 {ingredient} <button onClick={()=>deleteIngredient(index)} style={{marginLeft:"20px"}}>X</button>
