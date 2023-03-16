@@ -1,10 +1,12 @@
-// instead of Product this should be recipe
 const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 
 const favoriteSchema = new Schema({
-  name: {
+  id: {
+    type: Number,
+  },
+  title: {
     type: String,
     required: true,
     trim: true
@@ -12,10 +14,16 @@ const favoriteSchema = new Schema({
   image: {
     type: String
   },
-  id: {
-    type: Number,
+  servings: {
+    type: Number
+  },
+  readyInMinutes: {
+    type: Number
   },
   ingredients: {
+    type: [String]
+  },
+  instructions: {
     type: [String]
   }
 });
