@@ -15,6 +15,7 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Nav from './components/Nav';
+import RecipePage from './pages/RecipePage';
 import { StoreProvider } from './utils/GlobalState';
 import { ChefMode } from './pages/ChefMode';
 // import Success from './pages/Success';
@@ -48,7 +49,7 @@ function App() {
             <Nav />
             <Routes>
               <Route 
-                path="/" 
+                exact path="/" 
                 element={<Home />} 
               />
               <Route 
