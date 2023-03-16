@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useLocation } from 'react-router-dom';
 
 const RecipeDisplay = () => {
-  const { state } = useLocation();
-  const recipeId = state.recipeId;
-  const [recipe, setRecipe] = useState(null);
+  const [recipeInfo, setRecipeInfo] = useState(null);
+  const recipeId = window.location.href.split("/")[window.location.href.split("/").length -1]
+  console.log(recipeId)
 
   useEffect(() => {
     const options = {
@@ -19,34 +18,35 @@ const RecipeDisplay = () => {
 
     axios(options)
       .then(response => {
-        setRecipe(response.data);
+        setRecipeInfo(response.data);
+        console.log(response.data);
       })
       .catch(error => {
         console.error(error);
       });
   }, [recipeId]);
 
-  if (!recipe) {
+  if (!recipeInfo) {
     return <div>Loading...</div>;
   }
 
   return (
     <div>
-      <h2>{recipe.title}</h2>
-      <img src={recipe.image} alt={recipe.title} />
-      <p>Servings: {recipe.servings}</p>
-      <p>Ready in: {recipe.readyInMinutes} minutes</p>
+      <h2>{recipeInfo.title}</h2>
+      <img src={recipeInfo.image} alt={recipeInfo.title} />
+      <p>Servings: {recipeInfo.servings}</p>
+      <p>Ready in: {recipeInfo.readyInMinutes} minutes</p>
       <h3>Ingredients:</h3>
       <ul>
-        {recipe.extendedIngredients.map(ingredient => (
+        {recipeInfo.extendedIngredients.map(ingredient => (
           <li key={ingredient.id}>
-            {ingredient.originalString} ({ingredient.amount} {ingredient.unit})
+            {ingredient.name} ({ingredient.amount} {ingredient.unit})
           </li>
         ))}
       </ul>
       <h3>Instructions:</h3>
       <ol>
-        {recipe.analyzedInstructions[0].steps.map(step => (
+        {recipeInfo.analyzedInstructions[0].steps.map(step => (
           <li key={step.number}>{step.step}</li>
         ))}
       </ol>
