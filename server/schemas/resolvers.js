@@ -139,7 +139,19 @@ const resolvers = {
       return { token, user };
     },
 
-    
+    saveRecipe: async (_, { recipeInfo }, { db }) => {
+      try {
+        const collection = db.collection('recipes');
+        const result = await collection.insertOne(recipeInfo);
+        const savedRecipe = result.ops[0];
+        savedRecipe.id = savedRecipe._id.toString();
+        delete savedRecipe._id;
+        return savedRecipe;
+      } catch (error) {
+        console.error(error);
+        throw new Error('Failed to save recipe');
+      }
+    }
   }
 };
 
