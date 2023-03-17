@@ -32,6 +32,7 @@ const SearchBar = () => {
     try {
       const response = await axios.request(options);
       setRecipes(response.data);
+      console.log(response.data);
     } catch (error) {
       console.error(error);
     }
