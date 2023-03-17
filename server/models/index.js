@@ -1,7 +1,7 @@
 // orginize the models here first
 const User = require('./User');
-const Product = require('./Product');
-const Category = require('./Category');
-const Order = require('./Order');
+const Favorite = require('./Favorite');
+const Recipe = require('./Recipe');
+const Grocery = require('./GroceryList');
 
-module.exports = { User, Product, Category, Order };
+module.exports = { User, Favorite, Recipe, Grocery };
