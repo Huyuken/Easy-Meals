@@ -31,8 +31,26 @@ const typeDefs = gql`
     orders: [Order]
   }
 
-  type Checkout {
-    session: ID
+  type Recipe {
+    _id: ID
+    id: Number
+    title: String!
+    image: String
+    servings: Number
+    readyInMinutes: Number
+    ingredients: [String]
+    instructions: [String]
+  }
+
+  type Favorite {
+    _id: ID
+    id: Number
+    title: String!
+    image: String
+    servings: Number
+    readyInMinutes: Number
+    ingredients: [String]
+    instructions: [String]
   }
 
   type Auth {
@@ -55,6 +73,7 @@ const typeDefs = gql`
     updateUser(firstName: String, lastName: String, email: String, password: String): User
     updateProduct(_id: ID!, quantity: Int!): Product
     login(email: String!, password: String!): Auth
+    addFavorite(id: Number, title: String!, image: String, servings: Number, readyInMinutes: Number, ingredients: [String], instructions: [String]): [Favorite!]
   }
 `;
 
