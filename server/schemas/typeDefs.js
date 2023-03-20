@@ -2,16 +2,6 @@
 const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
-  type Recipe {
-    id: ID 
-    title: String
-    image: String
-    servings: Int
-    readyInMinutes: Int 
-    ingredients: [String]
-    instructions: [String]
-  }
-
 
   type Grocery {
     items: [String]
@@ -22,47 +12,48 @@ const typeDefs = gql`
     firstName: String
     lastName: String
     email: String
-    orders: [Order]
+    favorites: [Favorite]
   }
 
   type Recipe {
     _id: ID
-    id: Number
+    id: ID
     title: String!
     image: String
-    servings: Number
-    readyInMinutes: Number
+    servings: Int
+    readyInMinutes: Int
     ingredients: [String]
     instructions: [String]
   }
 
   type Favorite {
     _id: ID
-    id: Number
+    id: ID
     title: String!
     image: String
-    servings: Number
-    readyInMinutes: Number
+    servings: Int 
+    readyInMinutes: Int
     ingredients: [String]
     instructions: [String]
   }
 
   type Query {
-    categories: [Category]
-    products(category: ID, name: String): [Product]
-    product(_id: ID!): Product
+    recipes: [Recipe]
+    groceryList: [Grocery]
+    favorites(user: ID): [Favorite]
+    user: User,
+  }
+
+  type Auth {
+    token: ID
     user: User
-    order(_id: ID!): Order
-    checkout(products: [ID]!): Checkout
   }
 
   type Mutation {
     addUser(firstName: String!, lastName: String!, email: String!, password: String!): Auth
-    addOrder(products: [ID]!): Order
     updateUser(firstName: String, lastName: String, email: String, password: String): User
-    updateProduct(_id: ID!, quantity: Int!): Product
     login(email: String!, password: String!): Auth
-    addFavorite(id: Number, title: String!, image: String, servings: Number, readyInMinutes: Number, ingredients: [String], instructions: [String]): [Favorite!]
+    addFavorite(id: ID, title: String!, image: String, servings: Int, readyInMinutes: Int, ingredients: [String], instructions: [String]): [Favorite!]
   }
 `;
 

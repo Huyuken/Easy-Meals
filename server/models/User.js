@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 const bcrypt = require('bcrypt');
-const Order = require('./Favorites');
+const Favorite = require('./Favorite');
 
 const userSchema = new Schema({
   firstName: {
@@ -26,7 +26,7 @@ const userSchema = new Schema({
     required: true,
     minlength: 5
   },
-  favorites: [Favorites.schema]
+  favorites: [Favorite.schema]
 });;
 
 // set up pre-save middleware to create password
