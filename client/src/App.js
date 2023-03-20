@@ -18,6 +18,7 @@ import Nav from './components/Nav';
 import RecipePage from './pages/RecipePage';
 import { StoreProvider } from './utils/GlobalState';
 import { ChefMode } from './pages/ChefMode';
+import UserPage from './pages/UserPage';
 // import Success from './pages/Success';
 // import OrderHistory from './pages/OrderHistory';
 
@@ -67,6 +68,10 @@ function App() {
               <Route 
                 path="/chefmode" 
                 element={<ChefMode />} 
+              />
+              <Route 
+                path="/user" 
+                element={<UserPage />} 
               />
               
             </Routes>
