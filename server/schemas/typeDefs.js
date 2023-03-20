@@ -7,14 +7,10 @@ const typeDefs = gql`
     name: String
   }
 
-  type Product {
+  type GroceryList {
     _id: ID
-    name: String
-    description: String
-    image: String
-    quantity: Int
-    price: Float
-    category: Category
+   items:{
+   type: [String]}
   }
 
   type Order {
@@ -65,6 +61,8 @@ const typeDefs = gql`
     user: User
     order(_id: ID!): Order
     checkout(products: [ID]!): Checkout
+    recipes: [Recipe]
+    favorite: [Favorite]
   }
 
   type Mutation {

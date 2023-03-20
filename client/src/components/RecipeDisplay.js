@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import saveRecipe from '../api/api';
 
 const RecipeDisplay = () => {
   const [recipeInfo, setRecipeInfo] = useState(null);
@@ -31,26 +30,26 @@ const RecipeDisplay = () => {
     return <div>Loading...</div>;
   }
 
-  const handleSave = async (event) => {
-    console.log(event.target)
-    try {
-      const response = await axios.post('/api/', recipeInfo);
-      console.log('Recipe saved successfully', savedRecipe);
-      if(!response.data) {
-        console.log(response)
-      }
-      const savedRecipe = await saveRecipe(response.data);
-      if(!savedRecipe) {
-        console.log(savedRecipe)
-      }
-      if(savedRecipe) {
-        alert('Recipe Saved!')
-      }
-    } catch (error) {
-      console.error(error);
-      alert('Failed to save recipe');
-    }
-  };
+  // const handleSave = async (event) => {
+  //   console.log(event.target)
+  //   try {
+  //     const response = await axios.post('/api/', recipeInfo);
+  //     console.log('Recipe saved successfully', savedRecipe);
+  //     if(!response.data) {
+  //       console.log(response)
+  //     }
+  //     const savedRecipe = await (response.data);
+  //     if(!savedRecipe) {
+  //       console.log(savedRecipe)
+  //     }
+  //     if(savedRecipe) {
+  //       alert('Recipe Saved!')
+  //     }
+  //   } catch (error) {
+  //     console.error(error);
+  //     alert('Failed to save recipe');
+  //   }
+  // };
 
   return (
     <div>
@@ -72,7 +71,7 @@ const RecipeDisplay = () => {
           <li key={step.number}>{step.step}</li>
         ))}
       </ol>
-      <button onClick={handleSave}>Save Recipe</button>
+      {/* <button onClick={handleSave}>Save Recipe</button> */}
     </div>
   );
 };
