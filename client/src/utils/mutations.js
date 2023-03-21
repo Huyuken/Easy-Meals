@@ -29,6 +29,34 @@ export const ADD_ORDER = gql`
     }
   }
 `;
+export const ADD_RECIPE = gql`
+  mutation addRecipe(
+    $title: String!
+    $image: String!
+    $servings: Int!
+    $readyInMinutes: Int!
+    $ingredients: [String!]!
+    $instructions: [String!]!
+  ) {
+    addRecipe(
+      title: $title
+      image: $image
+      servings: $servings
+      readyInMinutes: $readyInMinutes
+      ingredients: $ingredients
+      instructions: $instructions
+    ) {
+      _id
+      title
+      image
+      servings
+      readyInMinutes
+      ingredients
+      instructions
+    }
+  }
+`;
+
 
 export const ADD_USER = gql`
   mutation addUser(

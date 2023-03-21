@@ -1,11 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-// import saveRecipe from '../api/api';
+import { useMutation } from '@apollo/client';
+import { ADD_RECIPE } from '../utils/mutations';
+import Auth from "../utils/auth";
 
-const RecipeDisplay = () => {
+const RecipeDisplay = ({ recipe }) => {
   const [recipeInfo, setRecipeInfo] = useState(null);
   const recipeId = window.location.href.split("/")[window.location.href.split("/").length -1]
-  console.log(recipeId)
+  const [addRecipe] = useMutation(ADD_RECIPE);
+  // console.log(recipeId)
+
+  function showButton () {
+    if (Auth.loggedIn()) {
+      return (<button onClick={handleSave}>Save Recipe</button>)}
+  }
 
   useEffect(() => {
     const options = {
@@ -31,26 +39,25 @@ const RecipeDisplay = () => {
     return <div>Loading...</div>;
   }
 
-  // const handleSave = async (event) => {
-  //   console.log(event.target)
-  //   try {
-  //     const response = await axios.post('/api/', recipeInfo);
-  //     console.log('Recipe saved successfully', savedRecipe);
-  //     if(!response.data) {
-  //       console.log(response)
-  //     }
-  //     const savedRecipe = await saveRecipe(response.data);
-  //     if(!savedRecipe) {
-  //       console.log(savedRecipe)
-  //     }
-  //     if(savedRecipe) {
-  //       alert('Recipe Saved!')
-  //     }
-  //   } catch (error) {
-  //     console.error(error);
-  //     alert('Failed to save recipe');
-  //   }
-  // };
+  const handleSave = async (event) => {
+    
+    // console.log(event.target)
+    try {
+      const { data } = await addRecipe({
+        variables: {
+          title: recipeInfo.title,
+          image: recipeInfo.image,
+          servings: recipeInfo.servings,
+          readyInMinutes: recipeInfo.readyInMinutes,
+          ingredients: recipeInfo.extendedIngredients.map(ingredient => ingredient.original),
+          instructions: recipeInfo.analyzedInstructions[0].steps.map(step => step.step),
+        },
+      });
+      console.log(data);
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   return (
     <div>
@@ -72,7 +79,7 @@ const RecipeDisplay = () => {
           <li key={step.number}>{step.step}</li>
         ))}
       </ol>
-      {/* <button onClick={handleSave}>Save Recipe</button> */}
+      {showButton()}
     </div>
   );
 };

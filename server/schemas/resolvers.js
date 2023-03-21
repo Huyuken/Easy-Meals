@@ -1,5 +1,5 @@
 // major update required, change the schemas and understand the models and update
-const { AuthenticationError } = require('apollo-server-express');
+const { AuthenticationError, UserInputError } = require('apollo-server-express');
 const { User, Favorite, Recipe, Grocery } = require('../models');
 const { signToken } = require('../utils/auth');
 const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
@@ -10,7 +10,8 @@ const resolvers = {
       return await Grocery.find({});
     },
     favorites: async (parent, { user }) => {
-      return await Favorite.find({ _id: user });    },
+      return await Favorite.find({ _id: user });
+    },
 
     user: async (parent, args, context) => {
       if (context.user) {
@@ -34,7 +35,7 @@ const resolvers = {
 
       return { token, user };
     },
-    
+
     updateUser: async (parent, args, context) => {
       if (context.user) {
         return await User.findByIdAndUpdate(context.user._id, args, { new: true });
@@ -42,7 +43,7 @@ const resolvers = {
 
       throw new AuthenticationError('Not logged in');
     },
-    
+
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
 
@@ -61,19 +62,25 @@ const resolvers = {
       return { token, user };
     },
 
-//     saveRecipe: async (_, { recipeInfo }, { db }) => {
-//       try {
-//         const collection = db.collection('recipes');
-//         const result = await collection.insertOne(recipeInfo);
-//         const savedRecipe = result.ops[0];
-//         savedRecipe.id = savedRecipe._id.toString();
-//         delete savedRecipe._id;
-//         return savedRecipe;
-//       } catch (error) {
-//         console.error(error);
-//         throw new Error('Failed to save recipe');
-//    }
-//  }
+addRecipe: async (parent, recipe, context) => {
+  
+      const user = await User.findById(context.user._id);
+      if (!user) {
+        throw new AuthenticationError('User not found');
+      }
+
+      const { _id, title, image, servings, readyInMinutes, ingredients, instructions } = recipe;
+      const favoriteRecipe = { id: _id, title, image, servings, readyInMinutes, ingredients, instructions };
+
+      const isFavorite = user.favorites.some(favorite => favorite.id === _id);
+      if (isFavorite) {
+        throw new UserInputError('Recipe is already in favorites');
+      }
+
+      user.favorites.push(favoriteRecipe);
+      await user.save();
+      return user.favorites;
+    },
   }
 };
 

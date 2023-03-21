@@ -53,7 +53,7 @@ const typeDefs = gql`
     addUser(firstName: String!, lastName: String!, email: String!, password: String!): Auth
     updateUser(firstName: String, lastName: String, email: String, password: String): User
     login(email: String!, password: String!): Auth
-    addFavorite(id: ID, title: String!, image: String, servings: Int, readyInMinutes: Int, ingredients: [String], instructions: [String]): [Favorite!]
+    addRecipe(id: ID, title: String!, image: String, servings: Int, readyInMinutes: Int, ingredients: [String], instructions: [String]): [Favorite!]
   }
 `;
 
