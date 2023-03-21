@@ -72,7 +72,7 @@ addRecipe: async (parent, recipe, context) => {
       const { _id, title, image, servings, readyInMinutes, ingredients, instructions } = recipe;
       const favoriteRecipe = { id: _id, title, image, servings, readyInMinutes, ingredients, instructions };
 
-      const isFavorite = user.favorites.some(favorite => favorite.id === _id);
+      const isFavorite = user.favorites.some(favorite => favorite.title === title);
       if (isFavorite) {
         throw new UserInputError('Recipe is already in favorites');
       }
