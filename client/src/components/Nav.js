@@ -8,33 +8,36 @@ function Nav() {
         if (Auth.loggedIn()) {
         return (
         <ul className="flex-row">
-            {/* <li className="mx-1">
-                <Link to="/orderHistory">
-                    Order History
+            <li className="mx-1">
+                <Link to="/profile">
+                    My Profile
                 </Link>
-            </li> */}
+            </li>
             
             <li className="mx-1">
-            {/* this is not using the Link component to logout or user and then refresh the application to the start */}
-            <a href="/" onClick={() => Auth.logout()}>
-                Log Out
-            </a>
+              <Link to="/ChefMode">
+                  Chef Mode
+              </Link>
             </li>
+            
             <li className="mx-1">
-            <Link to="/ChefMode">
-                Chef Mode
-            </Link>
-          </li>
-          <li className="mx-1">
-            <Link to="/Recipes">
-                My Recipes
-            </Link>
-          </li>
-          <li className="mx-1">
-            <Link to="/DoGroceries">
-                Do Groceries
-            </Link>
-          </li>
+              <Link to="/Recipes">
+                  My Recipes
+              </Link>
+            </li>
+            
+            <li className="mx-1">
+              <Link to="/DoGroceries">
+                  Do Groceries
+              </Link>
+            </li> 
+            
+            <li className="mx-1">
+              {/* this is not using the Link component to logout or user and then refresh the application to the start */}
+              <a href="/" onClick={() => Auth.logout()}>
+                  Log Out
+              </a>
+            </li>
         </ul>
     );
     } else {

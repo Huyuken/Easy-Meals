@@ -16,6 +16,7 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Nav from './components/Nav';
 import RecipePage from './pages/RecipePage';
+import UserPage from './pages/UserPage'
 import { StoreProvider } from './utils/GlobalState';
 import { ChefMode } from './pages/ChefMode';
 // import Success from './pages/Success';
@@ -67,6 +68,10 @@ function App() {
               <Route 
                 path="/chefmode" 
                 element={<ChefMode />} 
+              />
+              <Route 
+                path="/profile"
+                element={<UserPage />}
               />
               
             </Routes>
