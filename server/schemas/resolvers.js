@@ -63,8 +63,8 @@ const resolvers = {
         throw new AuthenticationError('User not found');
       }
 
-      const { _id, title, image, servings, readyInMinutes, ingredients, instructions } = recipe;
-      const favoriteRecipe = { id: _id, title, image, servings, readyInMinutes, ingredients, instructions };
+      const { id, title, image, servings, readyInMinutes, ingredients, instructions } = recipe;
+      const favoriteRecipe = { id, title, image, servings, readyInMinutes, ingredients, instructions };
 
       const isFavorite = user.favorites.some(favorite => favorite.title === title);
       if (isFavorite) {
@@ -75,6 +75,8 @@ const resolvers = {
       await user.save();
       return user.favorites;
     },
+
+
 
     removeRecipe: async (_, { id }, context) => {
       const { user } = context;
@@ -99,6 +101,7 @@ const resolvers = {
         throw new Error('Failed to remove recipe');
       }
     },
+
   }
 };
 

@@ -9,12 +9,12 @@ function Nav() {
         return (
         <ul className="flex-row">
             <li className="mx-1">
-                <Link to="/profile">
+                <Link to="/Profile">
                     My Profile
                 </Link>
             </li>
             
-            <li className="mx-1">
+            {/* <li className="mx-1">
               <Link to="/ChefMode">
                   Chef Mode
               </Link>
@@ -30,7 +30,7 @@ function Nav() {
               <Link to="/DoGroceries">
                   Do Groceries
               </Link>
-            </li> 
+            </li>  */}
             
             <li className="mx-1">
               {/* this is not using the Link component to logout or user and then refresh the application to the start */}
@@ -73,6 +73,6 @@ function Nav() {
       </nav>
     </header>
   );
-}
+  }
 
 export default Nav;
