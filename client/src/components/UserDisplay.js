@@ -4,22 +4,18 @@ import Auth from '../utils/auth';
 import { QUERY_USER } from '../utils/queries';
 import { REMOVE_RECIPE } from '../utils/mutations';
 import { Link } from "react-router-dom";
-
 const UserPage = () => {
   const { loading, error, data } = useQuery(QUERY_USER);
   const [removeRecipe] = useMutation(REMOVE_RECIPE);
-
-
+  
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error! {error.message}</p>;
   const user = data.user;
-
   const handleRemoveRecipe = (id) => {
     removeRecipe({ variables: { id } }).then(() => {
-      window.location.reload(); 
+      window.location.reload();
     });
   };
-  
 
   return (
     <div className="user-page">
@@ -35,16 +31,15 @@ const UserPage = () => {
         {user &&
           user.favorites.map((recipe, index) => (
 
-            <div key={index} className="favorite"> 
+            <div key={index} className="favorite">
               <Link to={{
-              pathname: `/favorite/${recipe._id}`, 
+              pathname: `/favorite/${recipe._id}`,
               state: {
                 id: recipe._id
               }
               }}>
               <h5 className="recipe-link">{recipe.title} {recipe.id}</h5>
               </Link>
-
               <img
                 src={recipe.image}
                 alt="recipe image"></img>
