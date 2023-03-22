@@ -4,17 +4,23 @@ import Auth from '../utils/auth';
 import { QUERY_USER } from '../utils/queries';
 import { REMOVE_RECIPE } from '../utils/mutations';
 import { Link } from "react-router-dom";
+
 const UserPage = () => {
   const { loading, error, data } = useQuery(QUERY_USER);
   const [removeRecipe] = useMutation(REMOVE_RECIPE);
+
+
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error! {error.message}</p>;
   const user = data.user;
+
   const handleRemoveRecipe = (id) => {
     removeRecipe({ variables: { id } }).then(() => {
-      window.location.reload(); // Reload the page
+      window.location.reload(); 
     });
   };
+  
+
   return (
     <div className="user-page">
       {user ? (
@@ -28,6 +34,7 @@ const UserPage = () => {
       <div className="flex-row saved-recipes-container">
         {user &&
           user.favorites.map((recipe, index) => (
+
             <div key={index} className="favorite"> 
               <Link to={{
               pathname: `/favorite/${recipe._id}`, 
@@ -37,6 +44,7 @@ const UserPage = () => {
               }}>
               <h5 className="recipe-link">{recipe.title} {recipe.id}</h5>
               </Link>
+
               <img
                 src={recipe.image}
                 alt="recipe image"></img>
@@ -50,4 +58,5 @@ const UserPage = () => {
     </div>
   );
 };
+
 export default UserPage;

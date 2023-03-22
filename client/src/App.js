@@ -17,8 +17,12 @@ import Signup from './pages/Signup';
 import Nav from './components/Nav';
 // import NavBar from './components/NavBar'
 import RecipePage from './pages/RecipePage';
+
 import FavoritePage from './pages/FavoritePage';
 import UserPage from './pages/UserPage';
+import FavoriteRecipe from './pages/FavoriteRecipe';
+import UserPage from './pages/UserPage'
+
 import { StoreProvider } from './utils/GlobalState';
 import { ChefMode } from './pages/ChefMode';
 // import Success from './pages/Success';
@@ -71,6 +75,10 @@ function App() {
               <Route
                 path="/favorite/:id"
                 element={<FavoritePage />}
+              />
+              <Route 
+                path="/favorite/:id" 
+                element={<FavoriteRecipe />} 
               />
               <Route 
                 path="/chefmode" 

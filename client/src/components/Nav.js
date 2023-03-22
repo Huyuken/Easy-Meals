@@ -21,7 +21,7 @@ function Nav() {
             </li>
             
             <li className="mx-1">
-              <Link to="/Recipes">
+              <Link to="/favorite">
                   My Recipes
               </Link>
             </li>
