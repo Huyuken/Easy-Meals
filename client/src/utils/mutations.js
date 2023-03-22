@@ -31,6 +31,7 @@ export const ADD_ORDER = gql`
 `;
 export const ADD_RECIPE = gql`
   mutation addRecipe(
+    $id: ID!
     $title: String!
     $image: String!
     $servings: Int!
@@ -39,6 +40,7 @@ export const ADD_RECIPE = gql`
     $instructions: [String!]!
   ) {
     addRecipe(
+      id: $id
       title: $title
       image: $image
       servings: $servings
@@ -47,6 +49,7 @@ export const ADD_RECIPE = gql`
       instructions: $instructions
     ) {
       _id
+      id
       title
       image
       servings
@@ -75,6 +78,14 @@ export const ADD_USER = gql`
       user {
         _id
       }
+    }
+  }
+`;
+
+export const REMOVE_RECIPE = gql`
+  mutation removeRecipe($id: ID!) {
+    removeRecipe(id: $id) {
+      _id
     }
   }
 `;

@@ -15,8 +15,10 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Nav from './components/Nav';
+// import NavBar from './components/NavBar'
 import RecipePage from './pages/RecipePage';
-import UserPage from './pages/UserPage'
+import FavoritePage from './pages/FavoritePage';
+import UserPage from './pages/UserPage';
 import { StoreProvider } from './utils/GlobalState';
 import { ChefMode } from './pages/ChefMode';
 // import Success from './pages/Success';
@@ -44,6 +46,7 @@ const client = new ApolloClient({
 function App() {
   return (
     <ApolloProvider client={client}>
+
       <Router>
         <div>
           <StoreProvider>
@@ -64,6 +67,10 @@ function App() {
               <Route 
                 path="/recipes/:id" 
                 element={<RecipePage />} 
+              />
+              <Route
+                path="/favorite/:id"
+                element={<FavoritePage />}
               />
               <Route 
                 path="/chefmode" 

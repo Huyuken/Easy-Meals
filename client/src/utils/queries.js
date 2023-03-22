@@ -66,3 +66,19 @@ export const QUERY_USER = gql`
     }
   }
 `;
+
+export const QUERY_FAVORITE = gql`
+query getFavorite($id: ID) 
+  {
+    user {
+      favorites (id: $id) {
+        title
+        image
+        servings
+        readyInMinutes
+        ingredients
+        instructions
+        }
+    }
+  }
+`;

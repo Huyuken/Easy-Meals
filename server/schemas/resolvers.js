@@ -63,8 +63,8 @@ addRecipe: async (parent, recipe, context) => {
         throw new AuthenticationError('User not found');
       }
 
-      const { _id, title, image, servings, readyInMinutes, ingredients, instructions } = recipe;
-      const favoriteRecipe = { id: _id, title, image, servings, readyInMinutes, ingredients, instructions };
+      const { id, title, image, servings, readyInMinutes, ingredients, instructions } = recipe;
+      const favoriteRecipe = { id, title, image, servings, readyInMinutes, ingredients, instructions };
 
       const isFavorite = user.favorites.some(favorite => favorite.title === title);
       if (isFavorite) {
@@ -75,6 +75,31 @@ addRecipe: async (parent, recipe, context) => {
       await user.save();
       return user.favorites;
     },
+
+    removeRecipe: async (parent, { userId, favoriteId }, context) => {
+        if (context.user) {
+          return User.findOneAndUpdate(
+            { _id: userId },
+            {
+              $pull: {
+                favorites: {
+                  _id: favoriteId,
+                },
+              },
+            },
+            { new: true }
+          );
+        }
+        throw new AuthenticationError('You need to be logged in!');
+    },
+
+
+
+
+
+
+
+
   }
 };
 

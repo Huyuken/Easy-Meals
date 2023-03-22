@@ -28,7 +28,7 @@ const typeDefs = gql`
 
   type Favorite {
     _id: ID
-    id: ID
+    id: Int
     title: String!
     image: String
     servings: Int 
@@ -54,6 +54,7 @@ const typeDefs = gql`
     updateUser(firstName: String, lastName: String, email: String, password: String): User
     login(email: String!, password: String!): Auth
     addRecipe(id: ID, title: String!, image: String, servings: Int, readyInMinutes: Int, ingredients: [String], instructions: [String]): [Favorite!]
+    removeRecipe(userId: ID!, favoriteId: ID!): User
   }
 `;
 

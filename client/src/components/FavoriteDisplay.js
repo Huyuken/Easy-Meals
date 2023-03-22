@@ -4,7 +4,7 @@ import { useMutation } from '@apollo/client';
 import { ADD_RECIPE } from '../utils/mutations';
 import Auth from "../utils/auth";
 
-const RecipeDisplay = ({ recipe }) => {
+const FavoriteDisplay = ({ recipe }) => {
   const [recipeInfo, setRecipeInfo] = useState(null);
   const recipeId = window.location.href.split("/")[window.location.href.split("/").length -1]
   const [addRecipe] = useMutation(ADD_RECIPE);
@@ -85,4 +85,4 @@ const RecipeDisplay = ({ recipe }) => {
   );
 };
 
-export default RecipeDisplay;
+export default FavoriteDisplay;
