@@ -57,6 +57,14 @@ export const ADD_RECIPE = gql`
   }
 `;
 
+export const REMOVE_RECIPE = gql`
+  mutation removeRecipe($id: String!) {
+    removeRecipe(id: $id) {
+      _id
+    }
+  }
+`;
+
 
 export const ADD_USER = gql`
   mutation addUser(

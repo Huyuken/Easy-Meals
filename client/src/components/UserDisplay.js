@@ -1,16 +1,18 @@
 import React from 'react';
-import { useQuery } from '@apollo/client';
+import { useQuery, useMutation, gql } from '@apollo/client';
 import Auth from '../utils/auth';
 import { QUERY_USER } from '../utils/queries';
+import { REMOVE_RECIPE } from '../utils/mutations';
 
 const UserPage = () => {
   const { loading, error, data } = useQuery(QUERY_USER);
+  const [removeRecipe] = useMutation(REMOVE_RECIPE);
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error! {error.message}</p>;
 
   const user = data.user;
-
+  
   return (
     <div className="user-page">
       {user ? (
@@ -28,6 +30,9 @@ const UserPage = () => {
               <img
                 src={recipe.image}
                 alt="recipe image"></img>
+              <button onClick={() => {
+                removeRecipe({ variables: { id: recipe._id } });
+              }}>Remove</button>
               {/* Additional recipe information */}
             </div>
           ))}

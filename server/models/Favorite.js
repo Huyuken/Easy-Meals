@@ -4,7 +4,7 @@ const { Schema } = mongoose;
 
 const favoriteSchema = new Schema({
   id: {
-    type: Number,
+    type: String,
   },
   title: {
     type: String,
