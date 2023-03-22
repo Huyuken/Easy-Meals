@@ -56,8 +56,8 @@ const resolvers = {
       return { token, user };
     },
 
-addRecipe: async (parent, recipe, context) => {
-  
+    addRecipe: async (parent, recipe, context) => {
+
       const user = await User.findById(context.user._id);
       if (!user) {
         throw new AuthenticationError('User not found');
@@ -74,6 +74,30 @@ addRecipe: async (parent, recipe, context) => {
       user.favorites.push(favoriteRecipe);
       await user.save();
       return user.favorites;
+    },
+
+    removeRecipe: async (_, { id }, context) => {
+      const { user } = context;
+
+      if (!user) {
+        throw new AuthenticationError('Not authenticated');
+      }
+
+      console.log(typeof id)
+      console.log(id)
+
+      try {
+        const updatedUser = await User.findOneAndUpdate(
+          { _id: user._id },
+          { $pull: { favorites: { _id:id } } },
+          { new: true }
+        );
+
+        return updatedUser;
+      } catch (err) {
+        console.log(err);
+        throw new Error('Failed to remove recipe');
+      }
     },
   }
 };

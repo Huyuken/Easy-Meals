@@ -56,6 +56,7 @@ export const QUERY_USER = gql`
       firstName
       lastName
       favorites {
+        _id
         title
         image
         servings
