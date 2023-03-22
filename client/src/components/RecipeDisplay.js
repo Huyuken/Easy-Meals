@@ -45,6 +45,7 @@ const RecipeDisplay = ({ recipe }) => {
     try {
       const { data } = await addRecipe({
         variables: {
+          id: recipeInfo.id,
           title: recipeInfo.title,
           image: recipeInfo.image,
           servings: recipeInfo.servings,
