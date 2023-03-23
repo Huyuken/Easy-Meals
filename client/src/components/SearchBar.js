@@ -42,7 +42,7 @@ const SearchBar = () => {
   return (
     <div>
       <form onSubmit={handleFormSubmit}>
-        <div className="flex-row">
+        <div className="flex-row searchbar">
           <input
             type="search"
             placeholder="Search..."

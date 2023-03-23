@@ -9,8 +9,8 @@ function Nav() {
         return (
         <ul className="flex-row">
             <li className="mx-1">
-                <Link to="/Profile">
-                    My Profile
+                <Link to="/profile">
+                    Saved Recipes
                 </Link>
             </li>
             
@@ -18,15 +18,15 @@ function Nav() {
               <Link to="/ChefMode">
                   Chef Mode
               </Link>
-            </li>
+            </li> */}
             
-            <li className="mx-1">
+            {/* <li className="mx-1">
               <Link to="/favorite">
                   My Recipes
               </Link>
-            </li>
+            </li> */}
             
-            <li className="mx-1">
+            {/* <li className="mx-1">
               <Link to="/DoGroceries">
                   Do Groceries
               </Link>
