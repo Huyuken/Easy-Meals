@@ -1,4 +1,3 @@
-import React, { useState, useEffect } from 'react';
 import { QUERY_USER } from '../utils/queries';
 import { useQuery } from '@apollo/client';
 
@@ -69,3 +68,4 @@ const RecipeDisplay = ({ recipe }) => {
 };
 
 export default RecipeDisplay;
+
